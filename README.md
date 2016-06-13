@@ -1,7 +1,7 @@
 # Slapcha
 Slim and Lite Capcha Idea
 
-Files:
+#Files:
 
 index.html -> calls capcha-demo.php
 
@@ -13,5 +13,5 @@ capcha-check.php -> Tiny file to perform the check of the Capcha with its MD5 fr
 
 capcha.php -> Main file where the font is defined and the Capcha table is created.
 
-
+#Silly me:
 sineboy.html -> Some daft little maze idea I had; and subsequently forgot about.
