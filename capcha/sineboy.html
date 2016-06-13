@@ -1,0 +1,66 @@
+<html>
+<head><title> Sine of the Tables</title></head>
+<style type="text/css">
+
+  body { margin:0px; padding:0px; text-align:center; background-color:white; }
+  table { border:8px solid black; margin:auto; }
+  td { width:14px; height:14px; font:bold 12px arial; text-align:center; }
+  #info { margin:12px; font:bold 14px verdana; color:red; }
+  #status { margin:12px; font:normal 12px verdana; color:grey; }
+
+</style>
+<body onKeyPress="MOVE(event)">
+  <div id="info"> Score:0 --- Level:0 --- Remaining:0 </div>
+  <table border="0" cellpadding="0" cellspacing="0">
+   <tbody id="BOARD">
+   </tbody>
+  </table>
+  <div id="status"> (err) </div>
+</body>
+<script type="text/javascript">
+  var STATUS=document.getElementById('status');
+  var BOARD=document.getElementById('BOARD');
+  var MAX,RO,CO; // Grid size & dimensions //
+  var GRID; // Board Grid Table Play Area //
+  var PX=0, PY=0; // Player position //
+  var ACTION=0, SPEED=20;
+
+  function Layout()
+  {
+    RO=20; CO=32;
+    PX=Math.floor(CO/2);
+    PY=Math.floor(RO/2);
+    var ro,co,Chump='';
+    for(ro=0;ro<RO;ro++)
+    {
+      Chump+='<tr>';
+      for(co=0;co<CO;co++)
+        Chump+='<td>&nbsp;</td>';
+      Chump+='</tr>';
+    }
+    BOARD.innerHTML=Chump;
+    GRID=document.getElementsByTagName('td');
+    MAX=GRID.length;
+    for(var ii=0;ii<MAX;ii++)
+      GRID[ii].innerHTML='&loz;';
+    GRID[PY*CO+PX].innerHTML='&otimes;';//&#9786;';&oplus;
+  }
+
+  function MOVE(eve)
+  {
+    //alert(eve.keyCode);
+    GRID[PY*CO+PX].innerHTML='&nbsp;';//&#9786;';&oplus;
+    switch( eve.keyCode ){
+      case 111: if(PX>0)PX--; break;
+      case 112: if(PX<(CO-1))PX++; break;
+      case 113: if(PY>0)PY--; break;
+      case 97: if(PY<(RO-1))PY++; break;
+    }
+    GRID[PY*CO+PX].innerHTML='&oplus;';//&#9786;';&oplus;
+    STATUS.innerHTML=eve.keyCode+' :: '+PX+','+PY;
+  }
+
+  Layout();
+  STATUS.innerHTML='OK :: '+PX+','+PY;;
+</script>
+</html>
